@@ -7,7 +7,8 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'client';
+  title = 'MEAN Demo';
+  description = 'Angular + Express + NodeJS + MongoDB';
   users = '';
 
   constructor(private httpclient: HttpClient) {}
