@@ -1,7 +1,8 @@
+require('dotenv').config();
 var express = require('express');
 var router = express.Router();
 var mongoClient = require('mongodb').MongoClient;
-var url = 'mongodb://192.168.56.102:27017/';
+var url = process.env.MONGODB_URL;
 
 function insert() {
   mongoClient.connect(url, { useNewUrlParser: true }, (err, client) => {
