@@ -26,11 +26,11 @@ async function find(id) {
 function findAll(res) {
   find().then(
     users => {
-      console.info('The promise was fulfilled with items!', users);
+      console.info('users found : ', users);
       res.end(JSON.stringify(users));
     },
     err => {
-      console.error('The promise was rejected', err, err.stack);
+      console.error('find record error : ', err, err.stack);
     }
   );
 }
@@ -52,13 +52,13 @@ router.get('/', function(req, res, next) {
             findAll(res);
           },
           err => {
-            console.log('insert error', err, err.stack);
+            console.log('insert error : ', err, err.stack);
           }
         );
       }
     },
     err => {
-      console.error('The promise was rejected', err, err.stack);
+      console.error('find record error : ', err, err.stack);
     }
   );
 });
