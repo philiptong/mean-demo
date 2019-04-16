@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AppComponent {
   title = 'MEAN Demo';
-  description = 'Angular + Express + NodeJS + MongoDB';
+  description = 'mongodb 4.06 + express 4.16 + angular 7.2.0 + nodejs 10.15.1';
   users = '';
 
   constructor(private httpclient: HttpClient) {}
