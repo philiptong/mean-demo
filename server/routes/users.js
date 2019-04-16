@@ -4,15 +4,11 @@ var router = express.Router();
 var mongoClient = require('mongodb').MongoClient;
 var url = process.env.MONGODB_URL;
 
-function insert() {
-  mongoClient.connect(url, { useNewUrlParser: true }, (err, client) => {
-    if (err) throw err;
+async function insert() {
+  return mongoClient.connect(url, { useNewUrlParser: true }).then(client => {
     var user = { id: 100001, name: 'philip' };
     var collection = client.db('mean-demo').collection('users');
-    collection.insertOne(user, (err, res) => {
-      if (err) throw err;
-      console.log('1 user inserted');
-    });
+    return collection.insertOne(user);
   });
 }
 
@@ -27,6 +23,18 @@ async function find(id) {
   });
 }
 
+function findAll(res) {
+  find().then(
+    users => {
+      console.info('The promise was fulfilled with items!', users);
+      res.end(JSON.stringify(users));
+    },
+    err => {
+      console.error('The promise was rejected', err, err.stack);
+    }
+  );
+}
+
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   res.setHeader('Content-Type', 'application/json');
@@ -35,19 +43,19 @@ router.get('/', function(req, res, next) {
     record => {
       if (record.length > 0) {
         console.log('record exists : ' + JSON.stringify(record));
+        findAll(res);
       } else {
         console.log('record not exist, will try to insert');
-        insert();
+        insert().then(
+          result => {
+            console.log('insert result : ' + result);
+            findAll(res);
+          },
+          err => {
+            console.log('insert error', err, err.stack);
+          }
+        );
       }
-      find().then(
-        users => {
-          console.info('The promise was fulfilled with items!', users);
-          res.end(JSON.stringify(users));
-        },
-        err => {
-          console.error('The promise was rejected', err, err.stack);
-        }
-      );
     },
     err => {
       console.error('The promise was rejected', err, err.stack);
