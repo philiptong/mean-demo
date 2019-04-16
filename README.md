@@ -12,6 +12,7 @@ mongodb 4.06 + express 4.16 + angular 7.2.0 + nodejs 10.15.1
 
 ## Run
 
+1. Update `MONGODB_URL` in .env file in server folder
 1. Run `npm start` in client folder
-2. Run `npm start` in server folder
-3. The service is available in http://localhost:4200
+1. Run `npm start` in server folder
+1. The service is available in http://localhost:4200
