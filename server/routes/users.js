@@ -3,18 +3,20 @@ var express = require('express');
 var router = express.Router();
 var mongoClient = require('mongodb').MongoClient;
 var url = process.env.MONGODB_URL;
+var user = { id: 100001, name: 'philip' };
+var dbName = 'mean-demo';
+var collectionName = 'users';
 
 async function insert() {
   return mongoClient.connect(url, { useNewUrlParser: true }).then(client => {
-    var user = { id: 100001, name: 'philip' };
-    var collection = client.db('mean-demo').collection('users');
+    var collection = client.db(dbName).collection(collectionName);
     return collection.insertOne(user);
   });
 }
 
 async function find(id) {
   return mongoClient.connect(url, { useNewUrlParser: true }).then(client => {
-    var collection = client.db('mean-demo').collection('users');
+    var collection = client.db(dbName).collection(collectionName);
     if (id) {
       return collection.find({ id }).toArray();
     } else {
@@ -39,7 +41,7 @@ function findAll(res) {
 router.get('/', function(req, res, next) {
   res.setHeader('Content-Type', 'application/json');
 
-  find(100001).then(
+  find(user.id).then(
     record => {
       if (record.length > 0) {
         console.log('record exists : ' + JSON.stringify(record));
