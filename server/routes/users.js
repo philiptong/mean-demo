@@ -31,7 +31,7 @@ async function find(id) {
 router.get('/', function(req, res, next) {
   res.setHeader('Content-Type', 'application/json');
 
-  find('100001').then(
+  find(100001).then(
     record => {
       if (record.length > 0) {
         console.log('record exists : ' + JSON.stringify(record));
