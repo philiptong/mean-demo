@@ -30,21 +30,21 @@ benchmarks/graphs
  See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # compiled output
-client/dist
-client/tmp
-client/out-tsc
+dist
+tmp
+out-tsc
 # Only exists if Bazel was run
-client/bazel-out
+bazel-out
 
 # dependencies
-client/node_modules
+node_modules
 
 # profiling files
 chrome-profiler-events.json
 speed-measure-plugin.json
 
 # IDEs and editors
-client/.idea
+.idea
 .project
 .classpath
 .c9/
@@ -61,15 +61,12 @@ client/.idea
 .history/*
 
 # misc
-client/.sass-cache
-client/connect.lock
-client/coverage
-client/libpeerconnection.log
+.sass-cache
+connect.lock
+coverage
+libpeerconnection.log
 npm-debug.log
 yarn-error.log
 testem.log
-client/typings
+typings
 
-# System Files
-.DS_Store
-Thumbs.db
