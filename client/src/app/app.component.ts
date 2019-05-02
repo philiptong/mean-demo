@@ -19,7 +19,7 @@ export class AppComponent {
         this.users = JSON.stringify(result);
       },
       error => {
-        alert(error);
+        alert('error : ' + error.message);
       }
     );
   }
