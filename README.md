@@ -1,7 +1,7 @@
 # mean-demo
 
 Minimum starter project using
-mongodb 4.06 + express 4.16 + angular 7.2.0 + nodejs 10.15.1
+mongodb 4.06 + express 4.16 + angular 8.0.3 + nodejs 10.15.1
 
 ## Prerequisites
 
